@@ -8,9 +8,9 @@ const RouterComp = () => {
   console.log('In Router');
   return(
     <Router>
-      <Scene key = "App" component = { App } hideNavBar/>
-      <Scene key = "Snap" component = { Snapshot } />
-      <Scene key = "Pics" component = { Gallery } />
+      <Scene key = "App" component = { App } hideNavBar />
+      <Scene key = "Snap" component = { Snapshot } hideNavBar />
+      <Scene key = "Pics"  hideNavBar component = { Gallery } hideNavBar />
     </Router>
   );
 };
