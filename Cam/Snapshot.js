@@ -33,9 +33,13 @@ class Snapshot extends Component {
              style = { styles.Camerapreview }
              type = 'front'
              aspect = { Camera.constants.Aspect.fill }>
-             <Text style = { styles.capture } onPress = { this.takePicture.bind(this) }>
-             <Icon rounded name = 'camera' />
-             </Text>
+
+             <Icon
+             name = 'camera'
+             style = { styles.capture }
+             onPress = { this.takePicture.bind(this) }
+             />
+
       </Camera>
     );
    }
@@ -43,10 +47,20 @@ class Snapshot extends Component {
    renderImage() {
    return (
      <View >
-       <Image
+        <Image
           style = { styles.ImagePreview }
-         source = {{ uri: this.state.path }}
-       />
+          source = {{ uri: this.state.path }}
+        />
+        <Icon
+          name = 'close'
+          style = { styles.cancel }
+          onPress = { () => this.setState({ path: null }) }
+        />
+        <Icon
+        name = 'crop'
+        style = { styles.cropStyle }
+        />
+
      </View>
    );
  }
@@ -74,17 +88,8 @@ const styles = {
    flex: 1,
    justifyContent: 'flex-end',
    alignItems: 'center',
-   height: Dimensions.get('window').height * 0.7,
-   width: Dimensions.get('window').width * 0.7
-  },
-
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    color: '#000',
-    padding: 8,
-    marginBottom: 10
+   height: Dimensions.get('window').height,
+   width: Dimensions.get('window').width
   },
 
   container: {
@@ -94,14 +99,26 @@ const styles = {
     backgroundColor: '#fff',
   },
 
+  capture: {
+    marginBottom: 10,
+    color: "white",
+    fontSize: 40
+  },
+
   cancel: {
     position: 'absolute',
-    right: 20,
-    top: 20,
-    backgroundColor: 'transparent',
+    bottom: 10,
+    right: 70,
     color: '#FFF',
-    fontWeight: '600',
-    fontSize: 17,
+    fontSize: 40
+  },
+
+  cropStyle: {
+    position: 'absolute',
+    bottom: 10,
+    right: 20,
+    color: '#FFF',
+    fontSize: 40
   }
 
 };
