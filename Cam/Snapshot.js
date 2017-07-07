@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, Dimensions, View, Image } from 'react-native';
 import Camera from 'react-native-camera';
 import { Button, Icon } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 
 class Snapshot extends Component {
 
@@ -45,7 +46,8 @@ class Snapshot extends Component {
    }
 
    renderImage() {
-   return (
+     console.log("in render Image", this.state.path);
+    return (
      <View >
         <Image
           style = { styles.ImagePreview }
@@ -59,6 +61,7 @@ class Snapshot extends Component {
         <Icon
         name = 'crop'
         style = { styles.cropStyle }
+        onPress = { () => { Actions.Crop( { imagePath : this.state.path}) }}
         />
 
      </View>
