@@ -7,36 +7,50 @@ class DisplayPic extends Component {
 
   constructor(props){
     super(props);
-    console.log("In DisplayPic : Image Props", props);
   }
 
   render() {
 
-   return (
+  const { containerStyle, textStyle, imageStyle } = styles;
 
-     <View style = {{ alignItems: 'center', marginTop: 50 }}>
+    return (
 
-     <Text style={{ color: "#22A7F0", fontSize: 20, fontWeight: 'bold', marginBottom: 20}}> Nice Pic :) {'\n\n'} Looking Cool.. </Text>
+      <View style = { containerStyle }>
 
-     <Image
-      style = { styles.ImagePreview }
-      source = {{ uri: this.props.data }}
-      />
+        <Text style={ textStyle }> Nice Pic :) </Text>
+
+        <Image
+        style = { imageStyle }
+        source = {{ uri: this.props.data }}
+        />
+
       </View>
 
-   ) ;
-
+    ) ;
   }
-
 }
 
 const styles = {
 
-  ImagePreview: {
-   height: 50,
-   width: 50
+  containerStyle: {
+    flex: 1,
+    backgroundColor: '#E4F1FE',
+    alignItems: 'center',
+    paddingTop: 50
   },
 
-}
+  textStyle: {
+    color: "#67809F",
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20
+  },
+
+  imageStyle: {
+   height: 200,
+   width: 200
+  }
+
+};
 
 export default DisplayPic;
