@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Button, Icon } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import ImagePicker from 'react-native-image-crop-picker';
 import {
   TouchableOpacity,
   StyleSheet,
@@ -11,6 +12,20 @@ import {
 
 
 export default class App extends Component {
+
+
+  selectFromGallery(){
+
+    ImagePicker.openPicker({
+      width: 100,
+      height: 100,
+      cropping: true
+    }).then(image => {
+      Actions.DisplayPic(image.path);
+      console.log(image);
+    });
+
+  }
 
   render() {
     return (
@@ -28,7 +43,7 @@ export default class App extends Component {
                 </TouchableOpacity>
               </Button>
               <Button rounded light style={{alignSelf: 'center'}}>
-                <TouchableOpacity onPress = { () => Actions.Pics() }>
+                <TouchableOpacity onPress = { () => this.selectFromGallery() }>
                   <Icon name = 'image' />
                 </TouchableOpacity>
               </Button>

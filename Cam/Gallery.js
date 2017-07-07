@@ -7,6 +7,7 @@ render(){
   console.log('Pics in Gallery');
   return(
     <Text> Pictures </Text>
+
   );
  }
 }
