@@ -1,6 +1,7 @@
 **CAMERA MODULE:** 
 
-## Libraries Used: ## 
+### Camera Library Used: ### 
+import ImagePicker from 'react-native-image-crop-picker';
 
 *Functioning:* 
 
