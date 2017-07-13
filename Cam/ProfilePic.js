@@ -120,6 +120,7 @@ class ProfilePic extends Component {
       cropping: true,
       includeBase64: true
       }).then(image => {
+      console.log("imageProperties from Camera - ", image);
       this.setState({ imageProperties: image, modalVisible: false });
     });
 
@@ -136,7 +137,7 @@ class ProfilePic extends Component {
       includeBase64: true,
       cropping: true
       }).then(image => {
-      console.log(image);
+      console.log("imageProperties from Gallery - ", image);
       this.setState({ imageProperties: image, modalVisible: false });
     });
 
