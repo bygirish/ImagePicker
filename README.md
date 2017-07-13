@@ -11,3 +11,5 @@ Router.js is called from the index file in starting and from thereon process is 
 2. styles.js --> Contains styling for the components used in ProfilePic.js.
 
 3. ProfilePic.js --> Main component of the module is in this file.
+
+4. unknown.jpeg --> Default Pic for displaying as Profile pic.
