@@ -1,14 +1,23 @@
+/* CAMERA MODULE */
+
+// importing required libraries
 import React, { Component  } from 'react';
 import { Text, View, Image, TouchableOpacity, Alert, Modal, Dimensions } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import { Button, Icon } from 'native-base';
+
+// importing styles
 import styles from './styles';
+
+// constants
+const FILE_NAME = "ProfilePic.js : ";
 
 class ProfilePic extends Component {
 
   constructor(props){
     super(props);
 
+    // Initializing state for image and modal
     this.initialState = {
       imageProperties: {
         path : "unknown",
@@ -81,10 +90,12 @@ class ProfilePic extends Component {
     );
   }
 
+  // for flipping modal visibility
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
+  // Displaying choices in alert box for selection
   showAlert(){
     Alert.alert(
     '',
@@ -98,7 +109,10 @@ class ProfilePic extends Component {
     )
   }
 
+  // When Camera option is chosen
   selectFromCamera(){
+
+    console.log( FILE_NAME + "In selectFromCamera method");
 
     ImagePicker.openCamera({
       width: Dimensions.get('window').height,
@@ -111,7 +125,10 @@ class ProfilePic extends Component {
 
   }
 
+  // When Gallery option is chosen
   selectFromGallery(){
+
+    console.log( FILE_NAME + "In selectFromGallery method");
 
     ImagePicker.openPicker({
       width: Dimensions.get('window').height,
