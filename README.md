@@ -1,5 +1,7 @@
 **CAMERA MODULE:** 
 
+## Libraries Used: ## 
+
 *Functioning:* 
 
 Router.js is called from the index file in starting and from thereon process is continued.
@@ -12,4 +14,7 @@ Router.js is called from the index file in starting and from thereon process is 
 
 3. ProfilePic.js --> Main component of the module is in this file.
 
-4. unknown.jpeg --> Default Pic for displaying as Profile pic.
+4. unknown.jpg --> Default Pic for displaying as Profile pic.
+
+**Note:**
+Proper comments have been inserted in these files for proper understanding.
