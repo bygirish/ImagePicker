@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Text, View, Image, TouchableOpacity, Alert } from 'react-native';
+import React, { Component  } from 'react';
+import { Text, View, Image, TouchableOpacity, Alert, Modal, Dimensions } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import { Button, Icon } from 'native-base';
 import styles from './styles';
@@ -10,7 +10,10 @@ class ProfilePic extends Component {
     super(props);
 
     this.initialState = {
-      path: 'unknown'
+      imageProperties: {
+        path : "unknown",
+      },
+      modalVisible: false,
     };
 
     this.state = this.initialState;
@@ -18,34 +21,68 @@ class ProfilePic extends Component {
 
   render() {
 
-    const { containerStyle, textStyle, imageStyle, buttonStyle, viewStyle } = styles;
-
     return (
 
-      <View style = { containerStyle }>
+      <View style = { styles.containerStyle }>
 
-        <Text style = { textStyle }> Profile Pic </Text>
+        <Text style = { styles.textStyle }> Profile Pic </Text>
 
-        <View style = { viewStyle }>
+        <View style = { styles.viewStyle }>
 
-            <Image
-            style = { imageStyle }
-            source = {{ uri: this.state.path }}
-            />
+          <Modal
+            animationType = { "none" }
+            transparent = { true }
+            visible = { this.state.modalVisible }
+            onRequestClose = { () => { this.setModalVisible(false) } }
+            >
 
-            <Button light style = { buttonStyle }>
+                <View style = { styles.modalContainerStyle } >
 
-              <TouchableOpacity onPress = { () => { this.showAlert() } }>
-              <Icon name = 'create'  />
-              </TouchableOpacity>
+                    <Image
+                    style = { styles.imageModalStyle }
+                    source = {{ uri: this.state.imageProperties.path }}
+                    >
 
-            </Button>
+                      <Button light style = { styles.closeButtonStyle }>
+                        <TouchableOpacity onPress = { () => { this.setModalVisible(false) } } >
+                          <Icon name = 'close'/>
+                        </TouchableOpacity>
+                      </Button>
+
+                      <Button light style = { styles.buttonStyle }>
+                        <TouchableOpacity onPress = { () => { this.showAlert() } } >
+                          <Icon name = 'create'  />
+                        </TouchableOpacity>
+                      </Button>
+
+                    </Image>
+
+                </View>
+
+          </Modal>
+
+          <TouchableOpacity onPress = { () => { this.setModalVisible(true) } } >
+
+            <View style = { styles.imageContainerStyle } >
+
+              <Image
+              style = { styles.imageStyle }
+              source = {{ uri: this.state.imageProperties.path }}
+              />
+
+            </View>
+
+          </TouchableOpacity>
 
         </View>
 
       </View>
 
     );
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   }
 
   showAlert(){
@@ -64,11 +101,12 @@ class ProfilePic extends Component {
   selectFromCamera(){
 
     ImagePicker.openCamera({
-      width: 1000,
-      height: 1000,
-      cropping: true
+      width: Dimensions.get('window').height,
+      height: Dimensions.get('window').height,
+      cropping: true,
+      includeBase64: true
       }).then(image => {
-      this.setState({ path: image.path });
+      this.setState({ imageProperties: image, modalVisible: false });
     });
 
   }
@@ -76,11 +114,13 @@ class ProfilePic extends Component {
   selectFromGallery(){
 
     ImagePicker.openPicker({
-      width: 1000,
-      height: 1000,
+      width: Dimensions.get('window').height,
+      height: Dimensions.get('window').height,
+      includeBase64: true,
       cropping: true
       }).then(image => {
-      this.setState({ path: image.path });
+      console.log(image);
+      this.setState({ imageProperties: image, modalVisible: false });
     });
 
   }

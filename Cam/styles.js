@@ -1,3 +1,4 @@
+import { Dimensions } from 'react-native';
 
 export default styles = {
 
@@ -18,8 +19,13 @@ export default styles = {
   imageStyle: {
    height: 200,
    width: 200,
-   borderRadius: 80
+   borderRadius: 30
 
+  },
+
+  imageModalStyle: {
+   height: Dimensions.get('window').width * 0.9,
+   width: Dimensions.get('window').width * 0.9,
   },
 
   viewStyle: {
@@ -34,5 +40,26 @@ export default styles = {
     borderRadius: 80,
 
   },
+
+  closeButtonStyle: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    borderRadius: 120,
+  },
+
+  imageContainerStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center'
+  },
+
+  modalContainerStyle: {
+    flex: 1,
+    backgroundColor: 'black',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 
 };
