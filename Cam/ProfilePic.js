@@ -23,6 +23,7 @@ class ProfilePic extends Component {
         path : "unknown",
       },
       modalVisible: false,
+      trashVisible: false
     };
 
     this.state = this.initialState;
@@ -30,11 +31,20 @@ class ProfilePic extends Component {
 
   render() {
 
+    var trashIcon;
+    if(this.state.imageProperties.path != "unknown"){
+      trashIcon =
+      <TouchableOpacity onPress = { () => { this.showAlert() } } >
+        <Icon name = 'trash' style={{color: 'white'}} />
+      </TouchableOpacity> ;
+    }
+    else{
+      trashIcon = <Text>    </Text> ;
+    }
+
     return (
 
       <View style = { styles.containerStyle }>
-
-        <Text style = { styles.textStyle }> Profile Pic </Text>
 
         <View style = { styles.viewStyle }>
 
@@ -45,41 +55,52 @@ class ProfilePic extends Component {
             onRequestClose = { () => { this.setModalVisible(false) } }
             >
 
-                <View style = { styles.modalContainerStyle } >
+              <View style = { styles.modalContainerStyle } >
 
-                    <Image
-                    style = { styles.imageModalStyle }
-                    source = {{ uri: this.state.imageProperties.path }}
-                    >
 
-                      <Button light style = { styles.closeButtonStyle }>
-                        <TouchableOpacity onPress = { () => { this.setModalVisible(false) } } >
-                          <Icon name = 'close'/>
+                  <View style={{position: 'absolute', top: 20, flexDirection: 'row'}}>
+
+                      <View style={{marginRight: Dimensions.get('window').width * 0.45}}>
+                        <TouchableOpacity onPress = { () => { this.setModalVisible(false) }} >
+                          <Icon name = 'arrow-back' style={{color: 'white'}} />
                         </TouchableOpacity>
-                      </Button>
+                      </View>
 
-                      <Button light style = { styles.buttonStyle }>
-                        <TouchableOpacity onPress = { () => { this.showAlert() } } >
-                          <Icon name = 'create'  />
+                      <View style={{marginRight: Dimensions.get('window').width * 0.1}} >
+                        {trashIcon}
+                      </View>
+
+                      <View style={{marginRight: Dimensions.get('window').width * 0.1}}>
+                        <TouchableOpacity onPress = { () => { this.selectFromGallery() } } >
+                          <Icon name = 'images' style={{color: 'white'}} />
                         </TouchableOpacity>
-                      </Button>
+                      </View>
 
-                    </Image>
+                      <View>
+                        <TouchableOpacity onPress = { () => { this.selectFromCamera() } } >
+                          <Icon name = 'camera' style={{color: 'white'}} />
+                        </TouchableOpacity>
+                      </View>
 
-                </View>
+
+
+                  </View>
+
+                  <Image
+                  style = { styles.imageModalStyle }
+                  source = {{ uri: this.state.imageProperties.path }}
+                  />
+
+              </View>
 
           </Modal>
 
-          <TouchableOpacity onPress = { () => { this.setModalVisible(true) } } >
+          <TouchableOpacity onPress = { () => { this.setModalVisible(true) }} >
 
-            <View style = { styles.imageContainerStyle } >
-
-              <Image
+            <Image
               style = { styles.imageStyle }
               source = {{ uri: this.state.imageProperties.path }}
               />
-
-            </View>
 
           </TouchableOpacity>
 
@@ -90,23 +111,21 @@ class ProfilePic extends Component {
     );
   }
 
+  showAlert(){
+  Alert.alert(
+  '',
+  'Remove Profile Photo ?',
+  [
+    {text: 'CANCEL', style: 'cancel'},
+    {text: 'REMOVE', onPress: () => { this.setState(this.initialState) } },
+  ],
+  { cancelable: false }
+  )
+  }
+
   // for flipping modal visibility
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
-  }
-
-  // Displaying choices in alert box for selection
-  showAlert(){
-    Alert.alert(
-    '',
-    'Choose From..',
-    [
-      { text: 'Remove', onPress: () => this.setState(this.initialState) },
-      { text: 'Camera', onPress: () => this.selectFromCamera() },
-      { text: 'Gallery', onPress: () => this.selectFromGallery() },
-    ],
-    { cancelable: true }
-    )
   }
 
   // When Camera option is chosen
@@ -121,7 +140,7 @@ class ProfilePic extends Component {
       includeBase64: true
       }).then(image => {
       console.log("imageProperties from Camera - ", image);
-      this.setState({ imageProperties: image, modalVisible: false });
+      this.setState({ imageProperties: image, modalVisible: false});
     });
 
   }
@@ -138,7 +157,7 @@ class ProfilePic extends Component {
       cropping: true
       }).then(image => {
       console.log("imageProperties from Gallery - ", image);
-      this.setState({ imageProperties: image, modalVisible: false });
+      this.setState({ imageProperties: image, modalVisible: false});
     });
 
   }

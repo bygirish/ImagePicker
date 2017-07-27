@@ -5,8 +5,8 @@ export default styles = {
   containerStyle: {
     flex: 1,
     backgroundColor: '#E4F1FE',
-    alignItems: 'center',
-    paddingTop: 50
+    paddingLeft: 20,
+    paddingTop: 40
   },
 
   textStyle: {
@@ -17,20 +17,20 @@ export default styles = {
   },
 
   imageStyle: {
-   height: 200,
-   width: 200,
+   height: 70,
+   width: 70,
    borderRadius: 30
 
   },
 
   imageModalStyle: {
-   height: Dimensions.get('window').width * 0.9,
-   width: Dimensions.get('window').width * 0.9,
+   height: Dimensions.get('window').width,
+   width: Dimensions.get('window').width,
   },
 
   viewStyle: {
-   height: 200,
-   width: 200,
+   height: 70,
+   width: 70,
   },
 
   buttonStyle: {
@@ -46,12 +46,6 @@ export default styles = {
     right: 0,
     top: 0,
     borderRadius: 120,
-  },
-
-  imageContainerStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center'
   },
 
   modalContainerStyle: {
