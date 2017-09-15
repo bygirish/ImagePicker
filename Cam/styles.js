@@ -5,8 +5,6 @@ export default styles = {
   containerStyle: {
     flex: 1,
     backgroundColor: '#E4F1FE',
-    paddingLeft: 20,
-    paddingTop: 40
   },
 
   textStyle: {
@@ -17,9 +15,9 @@ export default styles = {
   },
 
   imageStyle: {
-   height: 70,
-   width: 70,
-   borderRadius: 30
+   height:  Dimensions.get('window').width * 0.8,
+   width: Dimensions.get('window').width * 0.8,
+   borderRadius: 20
 
   },
 
@@ -29,8 +27,8 @@ export default styles = {
   },
 
   viewStyle: {
-   height: 70,
-   width: 70,
+     justifyContent: 'center',
+     alignItems: 'center'
   },
 
   buttonStyle: {

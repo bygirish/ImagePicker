@@ -39,7 +39,7 @@ class ProfilePic extends Component {
       </TouchableOpacity> ;
     }
     else{
-      trashIcon = <Text>    </Text> ;
+      trashIcon = <Text/>;
     }
 
     return (
@@ -94,6 +94,8 @@ class ProfilePic extends Component {
               </View>
 
           </Modal>
+
+          <Text style = {{ fontSize: 24, margin: 30, fontFamily: 'avenir' }}>Profile Pic</Text>
 
           <TouchableOpacity onPress = { () => { this.setModalVisible(true) }} >
 
