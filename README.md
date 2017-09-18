@@ -1,7 +1,11 @@
 **CAMERA MODULE:** 
 
-### Camera Library Used: ### 
-import ***ImagePicker*** from ***'react-native-image-crop-picker'***;
+## App demo
+
+<img src = './demo.gif' />
+
+### Camera Library Used: 
+import *ImagePicker* from *'react-native-image-crop-picker'*;
 
 *Functioning:* 
 
